@@ -1,3 +1,5 @@
+#!.venv/bin/python3
+
 """
 Auto add menber to Discord server with a token received from Discord API
 
@@ -103,7 +105,8 @@ async def api_join(code: str):
     Add a member to the server
     """
 
-    access_token = await exchange_code(code)["access_token"]
+    access_token = await exchange_code(code)
+    access_token = access_token["access_token"]
     user_id, user_name = await get_user(access_token)
 
     await add_to_guild(access_token, user_id, DISCORD_TOKEN)
@@ -114,13 +117,5 @@ async def api_join(code: str):
         status_code = 302
     )
 
-@app.get("/bot-server-count")
-async def bot_server_count():
-    """
-    Return bot server count
-    """
-
-    return await ipc.request("get_bot_server_count")
-
 if __name__ == "__main__":
-    uvicorn.run("main:app", port = 42069, reload = True)
+    uvicorn.run("main:app", port = 5000, reload = True)
