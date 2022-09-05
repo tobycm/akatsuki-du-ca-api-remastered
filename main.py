@@ -114,9 +114,6 @@ async def api_join(code: str):
         status_code = 302
     )
 
-if __name__ == "__main__":
-    uvicorn.run("main:app", port = 42069, reload = True)
-
 @app.get("/bot-server-count")
 async def bot_server_count():
     """
@@ -124,3 +121,6 @@ async def bot_server_count():
     """
 
     return await ipc.request("get_bot_server_count")
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", port = 42069, reload = True)
