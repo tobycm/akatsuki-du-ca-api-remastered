@@ -9,11 +9,9 @@ import json
 import uvicorn
 from aiohttp import ClientSession
 from fastapi.responses import RedirectResponse
+from discord.ext.ipc.client import Client
 
 from app import CApp
-
-app = CApp()
-ipc = Client(secret_key="🐼")
 
 with open("settings.json", "r", encoding="utf8") as f:
     settings = json.load(f)
@@ -23,8 +21,13 @@ CLIENT_SECRET = settings["CLIENT_SECRET"]
 DISCORD_TOKEN = settings["DISCORD_TOKEN"]
 REDIRECT_URI = settings["REDIRECT_URI"]
 API_VERSION = settings["API_VERSION"]
+IPC_SECRET = settings["IPC_SECRET"]
 
 ENDPOINT = "https://discord.com/api/" + API_VERSION
+
+app = CApp()
+if IPC_SECRET != "":
+    ipc = Client(secret_key=IPC_SECRET)
 
 @app.on_event("startup")
 async def startup_event():
@@ -120,3 +123,4 @@ async def bot_server_count():
     Return bot server count
     """
 
+    return await ipc.request("get_bot_server_count")
