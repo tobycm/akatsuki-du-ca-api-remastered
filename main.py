@@ -22,11 +22,11 @@ CLIENT_SECRET = settings["CLIENT_SECRET"]
 DISCORD_TOKEN = settings["DISCORD_TOKEN"]
 REDIRECT_URI = settings["REDIRECT_URI"]
 API_VERSION = settings["API_VERSION"]
+PORT = settings["PORT"]
 
 ENDPOINT = "https://discord.com/api/" + API_VERSION
 
 app = CApp()
-
 
 @app.on_event("startup")
 async def startup_event():
@@ -115,4 +115,4 @@ async def api_join(code: str):
     )
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", port = 5000, reload = True)
+    uvicorn.run("main:app", port = PORT, reload = True)
