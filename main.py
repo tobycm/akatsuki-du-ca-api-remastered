@@ -1,4 +1,4 @@
-#!.venv/bin/python3
+#!/usr/bin/env python3
 
 """
 Auto add menber to Discord server with a token received from Discord API
