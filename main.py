@@ -11,7 +11,6 @@ import json
 import uvicorn
 from aiohttp import ClientSession
 from fastapi.responses import RedirectResponse
-from discord.ext.ipc.client import Client
 
 from app import CApp
 
@@ -23,13 +22,11 @@ CLIENT_SECRET = settings["CLIENT_SECRET"]
 DISCORD_TOKEN = settings["DISCORD_TOKEN"]
 REDIRECT_URI = settings["REDIRECT_URI"]
 API_VERSION = settings["API_VERSION"]
-IPC_SECRET = settings["IPC_SECRET"]
 
 ENDPOINT = "https://discord.com/api/" + API_VERSION
 
 app = CApp()
-if IPC_SECRET != "":
-    ipc = Client(secret_key=IPC_SECRET)
+
 
 @app.on_event("startup")
 async def startup_event():

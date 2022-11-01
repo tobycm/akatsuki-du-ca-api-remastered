@@ -3,6 +3,5 @@
     "CLIENT_ID": 1234567890,
     "CLIENT_SECRET": "",
     "REDIRECT_URI": "",
-    "DISCORD_TOKEN": "",
-    "IPC_SECRET": ""
+    "DISCORD_TOKEN": ""
 }
